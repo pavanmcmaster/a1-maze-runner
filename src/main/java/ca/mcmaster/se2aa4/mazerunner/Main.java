@@ -1,8 +1,10 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
+import ca.mcmaster.se2aa4.mazerunner.maze.mazeloader
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import org.apache.commons.cli.*; 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,36 +24,27 @@ public class Main {
 
         try {
 	    CommandLine cmd = parser.parse(options, args);
-
-            // checks for the required "-i" flag
 	    String mazeFile = cmd.getOptionValue("i");
-            if (mazeFile==null) {
+            if (mazeFile!=null) {
+		logger.info("Reading the maze from file: " + mazeFile);
+                Maze maze = mazeloader.loadMaze(mazeFile);
+                logger.info("Maze has loaded successfully");
+                printMaze(maze);
+            } else {
                 logger.error("File not provided, missing required -i flag");
-                System.exit(1);
-            }
-            logger.info("Reading the maze from file: " + mazeFile);
-
-            // reads and processes the maze file
-            BufferedReader reader = new BufferedReader(new FileReader(mazeFile));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                for (int idx = 0; idx < line.length(); idx++) {
-                    if (line.charAt(idx) == '#') {
-                        System.out.print("WALL ");
-                    } else if (line.charAt(idx) == ' ') {
-                        System.out.print("PASS ");
-                    }
-                }
-                System.out.print(System.lineSeparator());
             }
 	} catch(ParseException e){ //catches exceptions and displays errors accordingly
 	    logger.error("Error parsing command line arguments", e);
+	} catch(IOException e){
+	    logger.error("Error when trying to load the maze: ", e);
 	} catch(Exception e) {
             logger.error("An error has occured while processing the maze");
         }
 	
-        logger.info("**** Computing path");
-        logger.info("PATH NOT COMPUTED");i
-        logger.info("** End of MazeRunner");
+    private static void printMaze(Maze maze) { //prints the maze
+        char[][] grid = maze.getGrid();
+        for (char[] row : grid) {
+            System.out.println(row);
+        }
     }
 }

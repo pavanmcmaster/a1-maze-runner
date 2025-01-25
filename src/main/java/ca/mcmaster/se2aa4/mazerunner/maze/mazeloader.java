@@ -7,12 +7,12 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class mazeloader {
-    public static maze loadMaze(String filePath) throws IOException {
+    public static Maze loadMaze(String filePath) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             List<char[]> lines = new ArrayList<>();
             String line;
 
-            while ((line = reader.readLine()) != null) {
+            while ((line = reader.readLine())!=null) {
                 if (!line.matches("[# ]+")) {
                     throw new IOException("Invalid format for maze: " + line);
                 }
@@ -23,7 +23,7 @@ public class mazeloader {
             throw new IOException("The maze file is empty");
         }
         char[][] grid = lines.toArray(new char[lines.size()][]);
-        return new maze(grid);
+        return new Maze(grid);
     }
 
 }
