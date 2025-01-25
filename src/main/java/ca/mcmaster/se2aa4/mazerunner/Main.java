@@ -1,6 +1,9 @@
 package ca.mcmaster.se2aa4.mazerunner;
-
+import ca.mcmaster.se2aa4.mazerunner.maze.Maze;
 import ca.mcmaster.se2aa4.mazerunner.maze.mazeloader
+import ca.mcmaster.se2aa4.mazerunner.maze.mazeexplorer;
+import ca.mcmaster.se2aa4.mazerunner.player.Player;
+import ca.mcmaster.se2aa4.mazerunner.player.Position;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
