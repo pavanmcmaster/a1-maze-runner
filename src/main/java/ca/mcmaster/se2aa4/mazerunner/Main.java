@@ -1,7 +1,7 @@
 package ca.mcmaster.se2aa4.mazerunner;
 import ca.mcmaster.se2aa4.mazerunner.maze.Maze;
-import ca.mcmaster.se2aa4.mazerunner.maze.mazeloader;
-import ca.mcmaster.se2aa4.mazerunner.maze.mazeexplorer;
+import ca.mcmaster.se2aa4.mazerunner.maze.MazeLoader;
+import ca.mcmaster.se2aa4.mazerunner.maze.MazeExplorer;
 import ca.mcmaster.se2aa4.mazerunner.player.Player;
 import ca.mcmaster.se2aa4.mazerunner.player.Position;
 import java.io.BufferedReader;
@@ -21,7 +21,7 @@ public class Main {
 
 	//Setting up Apache CLI library options/parsing arguments
 	Options options = new Options();
-        options.addOptions("i", true, "Input the maze file");
+        options.addOption("i", true, "Input the maze file");
 
         CommandLineParser parser = new DefaultParser();
 
@@ -30,7 +30,7 @@ public class Main {
 	    String mazeFile = cmd.getOptionValue("i");
             if (mazeFile!=null) {
 		logger.info("Reading the maze from file: " + mazeFile);
-                Maze maze = mazeloader.loadMaze(mazeFile);
+                Maze maze = MazeLoader.loadMaze(mazeFile);
                 logger.info("Maze has loaded successfully");
                 printMaze(maze);
             } else {
@@ -43,7 +43,7 @@ public class Main {
 	} catch(Exception e) {
             logger.error("An error has occured while processing the maze");
         }
-	
+    }	
     private static void printMaze(Maze maze) { //prints the maze
         char[][] grid = maze.getGrid();
         for (char[] row : grid) {

@@ -3,11 +3,11 @@ package ca.mcmaster.se2aa4.mazerunner.maze;
 import ca.mcmaster.se2aa4.mazerunner.player.Player;
 import ca.mcmaster.se2aa4.mazerunner.player.Position;
 
-public class MazeSolver {
+public class MazeExplorer {
     private Maze maze;
     private Player player;
 
-    public MazeSolver(Maze maze, Player player) {
+    public MazeExplorer(Maze maze, Player player) {
         this.maze = maze;
         this.player = player;
     }

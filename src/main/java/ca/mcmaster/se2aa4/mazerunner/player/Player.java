@@ -13,7 +13,7 @@ public class Player {
         return position;
     }
 
-    public boolean goForward(Maze maze) { //to go forward
+    public void goForward(Maze maze) { //to go forward
         int newx = position.getX();
         int newy = position.getY();
         switch (position.getDirection()) { //gets direction and uses switch case to go through all possible cases and adjust coordinate accordingly
